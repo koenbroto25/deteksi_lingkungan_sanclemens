@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verifikasi Wilayah Lingkungan — Paroki Santo Klemens I, Sepinggan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+/* =====================================================================
+   TOKEN DESAIN — diselaraskan dengan sistem desain sanclemens.vercel.app
+   (diambil dari public.css milik ekosistem utama)
+   ===================================================================== */
+:root {
+  --color-primary:    #1a0e05;
+  --color-secondary:  #2c1a0e;
+  --color-cream:      #f5f0e8;
+  --color-parchment:  #f8f1e2;
+  --color-stone:      #8b7355;
+  --color-stone-dark: #6b5740;
+  --color-gold:       #c8a96e;
+  --color-gold-light: #e8d5a3;
+  --color-gold-deep:  #8a6a35;
+  --color-text-dark:  #1c1410;
+  --color-text-light: #f0ebe0;
+  --color-success:    #4a8c5c;
+  --color-warning:    #b8860b;
+  --color-error:      #8b2635;
+
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --radius-card:      2px 20px 2px 20px;
+  --radius-card-lg:   4px 24px 4px 24px;
+  --radius-btn:       2px 24px 2px 24px;
+  --radius-pill:      24px;
+
+  --shadow-warm:    0 8px 32px rgba(26, 14, 5, 0.15);
+  --shadow-card:    0 4px 20px rgba(26, 14, 5, 0.1);
+  --shadow-gold:    0 4px 20px rgba(200, 169, 110, 0.35);
+
+  --transition-smooth: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-fast:   150ms ease;
+
+  --pattern-gothic-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='70' viewBox='0 0 70 70'%3E%3Cg fill='none' stroke='%23c8a96e' stroke-width='0.8'%3E%3Cpath d='M35 3 L67 35 L35 67 L3 35 Z' opacity='0.65'/%3E%3Ccircle cx='35' cy='26' r='8' opacity='0.55'/%3E%3Ccircle cx='44' cy='35' r='8' opacity='0.55'/%3E%3Ccircle cx='35' cy='44' r='8' opacity='0.55'/%3E%3Ccircle cx='26' cy='35' r='8' opacity='0.55'/%3E%3Ccircle cx='35' cy='35' r='3' fill='%23c8a96e' stroke='none' opacity='0.6'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 17px; }
+body {
+  font-family: var(--font-body);
+  color: var(--color-text-dark);
+  background-color: var(--color-cream);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+button { border: none; background: none; cursor: pointer; font-family: inherit; }
+input, textarea, select { font-family: inherit; }
+ul { list-style: none; }
+a { color: inherit; text-decoration: none; }
+
+/* === App shell === */
+.app-topbar {
+  background: var(--color-primary);
+  background-image: var(--pattern-gothic-dark), linear-gradient(var(--color-primary), var(--color-primary));
+  background-repeat: repeat, no-repeat;
+  background-size: 70px 70px, auto;
+  background-blend-mode: soft-light, normal;
+  padding: 1.1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: 1px solid rgba(200,169,110,0.25);
+  box-shadow: 0 1px 0 var(--color-gold), 0 12px 32px -16px rgba(0,0,0,0.5);
+}
+.app-topbar img {
+  width: 34px; height: 34px; border-radius: 50%; object-fit: cover;
+  border: 2px solid var(--color-gold);
+}
+.app-topbar-text { display: flex; flex-direction: column; line-height: 1.2; }
+.app-topbar-name { font-family: var(--font-heading); font-weight: 600; font-size: 1.1rem; color: var(--color-gold-light); }
+.app-topbar-sub { font-family: var(--font-body); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-stone); }
+
+.app-shell { max-width: 720px; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+
+/* === Ornament divider (dipakai ulang dari sistem desain utama) === */
+.ornament-divider { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 0 auto 1.75rem; max-width: 260px; }
+.ornament-divider .line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--color-gold), transparent); }
+.ornament-divider .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--color-gold); flex-shrink: 0; box-shadow: 0 0 8px 1px rgba(200,169,110,0.4); }
+
+/* === Kartu umum === */
+.card {
+  background: #fff;
+  border-radius: var(--radius-card-lg);
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(200,169,110,0.12);
+  padding: 1.75rem;
+}
+
+/* === Halaman: Pilih Lingkungan === */
+.screen { display: none; }
+.screen.active { display: block; animation: fadeInUp 0.5s cubic-bezier(0.25,0.46,0.45,0.94); }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(1.6rem, 4vw, 2.15rem);
+  color: var(--color-primary);
+  text-align: center;
+  line-height: 1.25;
+  margin-bottom: 0.6rem;
+}
+.hero-sub {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--color-stone-dark);
+  max-width: 480px;
+  margin: 0 auto 2rem;
+  line-height: 1.75;
+}
+
+.field-group { margin-bottom: 1.25rem; }
+.field-label {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-stone-dark);
+  margin-bottom: 0.5rem;
+}
+.field-select, .field-input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1.5px solid rgba(139,115,85,0.25);
+  border-radius: var(--radius-btn);
+  font-size: 0.92rem;
+  color: var(--color-text-dark);
+  background: var(--color-parchment);
+  transition: var(--transition-fast);
+}
+.field-select:focus, .field-input:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(200,169,110,0.15);
+}
+
+.btn-primary {
+  width: 100%;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  color: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-gold-light), var(--color-gold));
+  padding: 0.9rem 1.5rem;
+  border-radius: var(--radius-btn);
+  transition: var(--transition-smooth);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+}
+.btn-primary:hover:not(:disabled) { box-shadow: var(--shadow-gold); transform: translateY(-1px); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-secondary {
+  width: 100%;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: var(--color-stone-dark);
+  background: transparent;
+  border: 1.5px solid rgba(139,115,85,0.25);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-btn);
+  transition: var(--transition-smooth);
+  min-height: 44px;
+}
+.btn-secondary:hover { border-color: var(--color-gold); color: var(--color-gold-deep); }
+
+.alert-box {
+  padding: 0.85rem 1.1rem;
+  border-radius: var(--radius-card);
+  font-size: 0.82rem;
+  line-height: 1.6;
+  margin-top: 1rem;
+  display: none;
+}
+.alert-box.show { display: block; animation: fadeInUp 0.3s ease; }
+.alert-box.error { background: rgba(139,38,53,0.08); color: var(--color-error); border: 1px solid rgba(139,38,53,0.2); }
+.alert-box.success { background: rgba(74,140,92,0.08); color: var(--color-success); border: 1px solid rgba(74,140,92,0.2); }
+
+/* === Konfirmasi identitas ketua === */
+.welcome-card {
+  text-align: center;
+  padding: 2.5rem 1.75rem;
+}
+.welcome-icon {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: rgba(200,169,110,0.12);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.25rem;
+}
+.welcome-icon svg { width: 30px; height: 30px; color: var(--color-gold-deep); }
+.welcome-name { font-family: var(--font-heading); font-weight: 600; font-size: 1.5rem; color: var(--color-primary); margin-bottom: 0.25rem; }
+.welcome-lingkungan { font-size: 0.85rem; color: var(--color-stone-dark); letter-spacing: 0.02em; }
+
+/* === Progress bar (signature element) === */
+.progress-wrap { margin: 1.5rem 0 0.5rem; }
+.progress-label { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--color-stone-dark); margin-bottom: 0.4rem; }
+.progress-label strong { color: var(--color-gold-deep); }
+.progress-track {
+  height: 10px;
+  background: rgba(139,115,85,0.12);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  position: relative;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-gold), var(--color-gold-light));
+  border-radius: var(--radius-pill);
+  transition: width 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+  box-shadow: 0 0 10px rgba(200,169,110,0.5);
+}
+
+/* === Section header di dalam daftar verifikasi === */
+.section-title-row { display: flex; align-items: center; gap: 0.6rem; margin: 2.5rem 0 1rem; }
+.section-title-row:first-of-type { margin-top: 1.5rem; }
+.section-rosette { width: 20px; height: 20px; flex-shrink: 0; color: var(--color-gold); }
+.section-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--color-primary);
+}
+.section-desc { font-size: 0.78rem; color: var(--color-stone); margin: -0.6rem 0 1rem; padding-left: 2rem; }
+
+/* === Kartu entri wilayah (perumahan/landmark) === */
+.entry-card {
+  background: #fff;
+  border-radius: var(--radius-card);
+  border: 1px solid rgba(200,169,110,0.15);
+  box-shadow: var(--shadow-card);
+  padding: 1.25rem 1.4rem;
+  margin-bottom: 0.85rem;
+  transition: var(--transition-smooth);
+}
+.entry-card.is-ambigu { border-left: 3px solid var(--color-warning); background: linear-gradient(90deg, rgba(184,134,11,0.04), #fff 12%); }
+.entry-card.is-done { opacity: 0.55; }
+.entry-card.is-done .entry-actions { display: none; }
+
+.entry-name { font-family: var(--font-heading); font-weight: 600; font-size: 1.08rem; color: var(--color-text-dark); margin-bottom: 0.15rem; }
+.entry-meta { font-size: 0.76rem; color: var(--color-stone); line-height: 1.6; margin-bottom: 0.5rem; }
+.entry-meta b { color: var(--color-stone-dark); font-weight: 600; }
+
+.badge {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+  padding: 0.2rem 0.65rem; border-radius: var(--radius-pill);
+  margin-bottom: 0.6rem;
+}
+.badge.badge-ambigu { background: rgba(184,134,11,0.12); color: var(--color-warning); }
+.badge.badge-done-benar { background: rgba(74,140,92,0.12); color: var(--color-success); }
+.badge.badge-done-koreksi { background: rgba(139,115,85,0.15); color: var(--color-stone-dark); }
+.badge.badge-done-bukan { background: rgba(139,38,53,0.1); color: var(--color-error); }
+.badge.badge-usulan { background: rgba(45,77,115,0.1); color: #2d4d73; }
+
+.ambigu-note {
+  font-size: 0.78rem;
+  background: rgba(184,134,11,0.07);
+  border: 1px dashed rgba(184,134,11,0.35);
+  border-radius: var(--radius-card);
+  padding: 0.65rem 0.85rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-stone-dark);
+  line-height: 1.6;
+}
+
+.entry-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem; }
+.action-btn {
+  flex: 1;
+  min-width: 100px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--radius-btn);
+  border: 1.5px solid transparent;
+  transition: var(--transition-fast);
+  display: flex; align-items: center; justify-content: center; gap: 0.35rem;
+  min-height: 40px;
+}
+.action-btn.btn-benar { background: rgba(74,140,92,0.1); color: var(--color-success); border-color: rgba(74,140,92,0.25); }
+.action-btn.btn-benar:hover { background: var(--color-success); color: #fff; }
+.action-btn.btn-koreksi { background: rgba(139,115,85,0.08); color: var(--color-stone-dark); border-color: rgba(139,115,85,0.2); }
+.action-btn.btn-koreksi:hover { background: var(--color-stone-dark); color: #fff; }
+.action-btn.btn-bukan { background: rgba(139,38,53,0.07); color: var(--color-error); border-color: rgba(139,38,53,0.2); }
+.action-btn.btn-bukan:hover { background: var(--color-error); color: #fff; }
+.action-btn svg { width: 14px; height: 14px; }
+
+.entry-koreksi-box { display: none; margin-top: 0.75rem; }
+.entry-koreksi-box.show { display: block; animation: fadeInUp 0.25s ease; }
+.entry-koreksi-box textarea {
+  width: 100%; min-height: 70px; padding: 0.7rem 0.9rem;
+  border: 1.5px solid rgba(139,115,85,0.25); border-radius: var(--radius-card);
+  font-size: 0.82rem; resize: vertical; background: var(--color-parchment);
+}
+.entry-koreksi-box .koreksi-buttons { display: flex; gap: 0.5rem; margin-top: 0.6rem; }
+.entry-koreksi-box .koreksi-buttons button {
+  font-size: 0.74rem; font-weight: 600; padding: 0.5rem 1rem; border-radius: var(--radius-btn);
+  min-height: 38px;
+}
+.btn-simpan-koreksi { background: var(--color-gold); color: var(--color-primary); flex: 1; }
+.btn-batal-koreksi { background: transparent; border: 1.5px solid rgba(139,115,85,0.25); color: var(--color-stone-dark); }
+
+.tersimpan-indicator {
+  font-size: 0.7rem; color: var(--color-success); display: none; align-items: center; gap: 0.3rem; margin-top: 0.5rem;
+}
+.tersimpan-indicator.show { display: flex; animation: fadeInUp 0.2s ease; }
+
+/* === Checklist ringkas (jalan/gang/alias) === */
+.checklist-item {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+  padding: 0.7rem 0.5rem;
+  border-bottom: 1px solid rgba(139,115,85,0.1);
+}
+.checklist-item:last-child { border-bottom: none; }
+.checklist-item input[type="checkbox"] {
+  width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px;
+  accent-color: var(--color-success);
+  cursor: pointer;
+}
+.checklist-item-body { flex: 1; }
+.checklist-item-text { font-size: 0.88rem; color: var(--color-text-dark); }
+.checklist-item-tag { font-size: 0.68rem; color: var(--color-stone); text-transform: uppercase; letter-spacing: 0.05em; }
+.checklist-koreksi-box { display: none; margin-top: 0.5rem; }
+.checklist-koreksi-box.show { display: block; }
+.checklist-koreksi-box textarea {
+  width: 100%; min-height: 55px; padding: 0.6rem 0.8rem; font-size: 0.8rem;
+  border: 1.5px solid rgba(139,115,85,0.25); border-radius: var(--radius-card); background: var(--color-parchment);
+}
+
+/* === RT list (editable) === */
+.rt-list { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1rem; }
+.rt-chip {
+  display: flex; align-items: center; gap: 0.5rem;
+  background: var(--color-parchment);
+  border: 1.5px solid rgba(139,115,85,0.2);
+  border-radius: var(--radius-pill);
+  padding: 0.4rem 0.4rem 0.4rem 0.9rem;
+  font-size: 0.85rem;
+}
+.rt-chip input {
+  border: none; background: transparent; width: 70px; font-size: 0.85rem;
+  font-weight: 600; color: var(--color-text-dark); padding: 0;
+}
+.rt-chip input:focus { outline: none; }
+.rt-chip .rt-delete {
+  width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  color: var(--color-error); background: rgba(139,38,53,0.08); flex-shrink: 0;
+  transition: var(--transition-fast);
+}
+.rt-chip .rt-delete:hover { background: var(--color-error); color: #fff; }
+.rt-chip .rt-delete svg { width: 12px; height: 12px; }
+.rt-add-row { display: flex; gap: 0.5rem; }
+.rt-add-row input { flex: 1; }
+.rt-add-row button {
+  padding: 0.7rem 1.1rem; background: var(--color-gold); color: var(--color-primary);
+  border-radius: var(--radius-btn); font-size: 0.78rem; font-weight: 600; white-space: nowrap;
+}
+
+/* === Modal konfirmasi hapus === */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(26,14,5,0.55);
+  display: none; align-items: center; justify-content: center; z-index: 2000; padding: 1.5rem;
+}
+.modal-overlay.show { display: flex; animation: fadeInUp 0.2s ease; }
+.modal-box {
+  background: #fff; border-radius: var(--radius-card-lg); padding: 1.75rem;
+  max-width: 380px; width: 100%; box-shadow: var(--shadow-warm);
+}
+.modal-box h3 { font-family: var(--font-heading); font-size: 1.25rem; color: var(--color-error); margin-bottom: 0.6rem; }
+.modal-box p { font-size: 0.85rem; color: var(--color-stone-dark); line-height: 1.6; margin-bottom: 1.25rem; }
+.modal-actions { display: flex; gap: 0.6rem; }
+.modal-actions button { flex: 1; padding: 0.7rem; border-radius: var(--radius-btn); font-size: 0.8rem; font-weight: 600; min-height: 42px; }
+.modal-btn-batal { background: transparent; border: 1.5px solid rgba(139,115,85,0.25); color: var(--color-stone-dark); }
+.modal-btn-hapus { background: var(--color-error); color: #fff; }
+
+/* === Form tambah entri baru === */
+.tambah-entri-card { border: 2px dashed rgba(200,169,110,0.35); background: var(--color-parchment); }
+.tambah-entri-card .field-group:last-child { margin-bottom: 0; }
+
+/* === Loading spinner === */
+.spinner { width: 36px; height: 36px; border: 3px solid rgba(200,169,110,0.2); border-top-color: var(--color-gold); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 3rem auto; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-text { text-align: center; font-size: 0.82rem; color: var(--color-stone); }
+
+/* === Footer kecil === */
+.app-footer { text-align: center; font-size: 0.7rem; color: var(--color-stone); margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(139,115,85,0.12); }
+
+@media (max-width: 480px) {
+  .app-shell { padding: 1.75rem 1rem 4rem; }
+  .card { padding: 1.25rem; }
+  .action-btn { min-width: 90px; font-size: 0.7rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="app-topbar">
+  <img src="data:image/jpeg;base64,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" alt="Santo Klemens">
+  <div class="app-topbar-text">
+    <span class="app-topbar-name">Santo Klemens I</span>
+    <span class="app-topbar-sub">Verifikasi Wilayah Lingkungan</span>
+  </div>
+</div>
+
+<div class="app-shell">
+
+  <!-- ============================================================
+       LAYAR 1 — Pilih Lingkungan & Masukkan Token
+       ============================================================ -->
+  <section id="screen-login" class="screen active">
+    <div class="ornament-divider"><span class="line"></span><span class="dot"></span><span class="line"></span></div>
+    <h1 class="hero-title">Verifikasi Data Wilayah Lingkungan</h1>
+    <p class="hero-sub">
+      Halaman ini digunakan oleh Ketua Lingkungan/Stasi untuk memeriksa dan
+      memperbaiki data wilayah, sebagai bagian dari persiapan sistem digital
+      Paroki Santo Klemens I, Sepinggan yang sedang dibangun untuk umat.
+    </p>
+
+    <div class="card">
+      <div class="field-group">
+        <label class="field-label" for="input-lingkungan">Pilih Lingkungan / Stasi Anda</label>
+        <select id="input-lingkungan" class="field-select">
+          <option value="">-- Pilih Lingkungan / Stasi --</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="input-token">Token Akses</label>
+        <input type="text" id="input-token" class="field-input" placeholder="Masukkan token yang dikirim lewat WhatsApp">
+      </div>
+
+      <button id="btn-masuk" class="btn-primary">Masuk</button>
+
+      <div id="alert-login" class="alert-box error"></div>
+    </div>
+
+    <p class="hero-sub" style="margin-top:1.5rem; font-size:0.76rem;">
+      Belum menerima token akses, atau lupa/kehilangan token Anda?
+      Silakan hubungi kembali Sekretariat Paroki melalui nomor WhatsApp
+      yang mengirimkan link verifikasi ini.
+    </p>
+  </section>
+
+  <!-- ============================================================
+       LAYAR 2 — Sambutan & Pengantar (setelah token terverifikasi)
+       ============================================================ -->
+  <section id="screen-welcome" class="screen">
+    <div class="card welcome-card">
+      <div class="welcome-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/></svg>
+      </div>
+      <p class="welcome-lingkungan">Selamat datang,</p>
+      <div class="welcome-name" id="text-nama-ketua">—</div>
+      <p class="welcome-lingkungan">Lingkungan/Stasi <b id="text-nama-lingkungan">—</b></p>
+    </div>
+
+    <div class="card" style="margin-top:1.25rem;">
+      <p style="font-size:0.88rem; color:var(--color-stone-dark); line-height:1.85;">
+        Terima kasih telah meluangkan waktu, Bapak/Ibu. Berikut adalah daftar
+        perumahan, gang, jalan, dan RT yang tercatat sebagai wilayah lingkungan
+        Bapak/Ibu. Mohon diperiksa satu per satu — tandai <b>Benar</b> jika
+        sudah sesuai, atau lakukan koreksi bila diperlukan. Bapak/Ibu juga
+        dapat menambahkan wilayah yang belum tercatat di bagian akhir halaman.
+      </p>
+      <p style="font-size:0.82rem; color:var(--color-stone); margin-top:0.85rem; line-height:1.7;">
+        Semua perubahan tersimpan otomatis — Bapak/Ibu dapat melanjutkan
+        kembali kapan saja menggunakan link yang sama.
+      </p>
+      <button id="btn-mulai-verifikasi" class="btn-primary" style="margin-top:1.5rem;">Mulai Verifikasi</button>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       LAYAR 3 — Daftar Verifikasi (kartu-kartu)
+       ============================================================ -->
+  <section id="screen-verifikasi" class="screen">
+
+    <div class="card" style="margin-bottom:0.5rem;">
+      <div style="display:flex; justify-content:space-between; align-items:baseline;">
+        <div>
+          <div class="welcome-lingkungan" style="font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-stone);">Lingkungan/Stasi</div>
+          <div style="font-family:var(--font-heading); font-weight:600; font-size:1.15rem; color:var(--color-primary);" id="text-header-lingkungan">—</div>
+        </div>
+        <div style="text-align:right; font-size:0.72rem; color:var(--color-stone);">
+          Anda login sebagai<br><b style="color:var(--color-gold-deep);" id="text-header-ketua">—</b>
+        </div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-label">
+          <span>Progres Verifikasi</span>
+          <span><strong id="text-progress-count">0</strong> / <span id="text-progress-total">0</span> selesai</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <!-- --- Perumahan & Landmark (ambigu dulu, lalu biasa) --- -->
+    <div id="section-perumahan">
+      <div class="section-title-row">
+        <svg class="section-rosette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>
+        <span class="section-title">Perumahan &amp; Landmark</span>
+      </div>
+      <p class="section-desc">Periksa kebenaran setiap perumahan dan penanda wilayah berikut.</p>
+      <div id="list-perumahan"></div>
+    </div>
+
+    <!-- --- Jalan & Gang (checklist) --- -->
+    <div id="section-jalan-gang">
+      <div class="section-title-row">
+        <svg class="section-rosette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>
+        <span class="section-title">Jalan &amp; Gang</span>
+      </div>
+      <p class="section-desc">Semua tercentang berarti sudah dianggap benar. Hilangkan centang bila ada yang keliru.</p>
+      <div class="card">
+        <div id="list-jalan-gang"></div>
+      </div>
+    </div>
+
+    <!-- --- RT (editable) --- -->
+    <div id="section-rt">
+      <div class="section-title-row">
+        <svg class="section-rosette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>
+        <span class="section-title">RT (Rukun Tetangga)</span>
+      </div>
+      <p class="section-desc">Bapak/Ibu dapat mengubah, menghapus, atau menambah nomor RT di wilayah ini.</p>
+      <div class="card">
+        <div class="rt-list" id="list-rt"></div>
+        <div class="rt-add-row">
+          <input type="text" id="input-rt-baru" class="field-input" placeholder="Nomor RT baru, contoh: 41">
+          <button id="btn-tambah-rt">+ Tambah RT</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- --- Alias tambahan --- -->
+    <div id="section-alias" style="display:none;">
+      <div class="section-title-row">
+        <svg class="section-rosette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>
+        <span class="section-title">Nama Lain / Sebutan Sehari-hari</span>
+      </div>
+      <p class="section-desc">Nama-nama ini kemungkinan merujuk ke perumahan yang sudah tercatat di atas. Centang bila relevan dan sudah dikenal warga.</p>
+      <div class="card">
+        <div id="list-alias"></div>
+      </div>
+    </div>
+
+    <!-- --- Tambah entri baru --- -->
+    <div class="section-title-row">
+      <svg class="section-rosette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 5v14M5 12h14"/></svg>
+      <span class="section-title">Tambah Wilayah Baru</span>
+    </div>
+    <p class="section-desc">Bila ada perumahan atau landmark yang belum tercatat di atas.</p>
+    <div class="card tambah-entri-card">
+      <div class="field-group">
+        <label class="field-label" for="input-tambah-jenis">Jenis</label>
+        <select id="input-tambah-jenis" class="field-select">
+          <option value="perumahan">Perumahan</option>
+          <option value="landmark">Landmark / Penanda Wilayah</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="input-tambah-nama">Nama</label>
+        <input type="text" id="input-tambah-nama" class="field-input" placeholder="Contoh: Perumahan Griya Asri Blok C">
+      </div>
+      <button id="btn-tambah-entri" class="btn-primary">Tambahkan</button>
+      <div id="alert-tambah" class="alert-box success"></div>
+    </div>
+
+    <div class="app-footer">
+      Data ini digunakan untuk keperluan penataan wilayah internal Paroki Santo Klemens I, Sepinggan.<br>
+      Ada pertanyaan? Hubungi kembali nomor WhatsApp yang mengirimkan link ini.
+    </div>
+  </section>
+
+  <!-- ============================================================
+       LAYAR LOADING
+       ============================================================ -->
+  <section id="screen-loading" class="screen">
+    <div class="spinner"></div>
+    <p class="loading-text">Memuat data...</p>
+  </section>
+
+</div>
+
+<!-- Modal konfirmasi hapus RT -->
+<div class="modal-overlay" id="modal-hapus-rt">
+  <div class="modal-box">
+    <h3>Hapus RT ini?</h3>
+    <p>Tindakan ini akan menghapus data RT <b id="modal-rt-nomor">—</b> secara permanen dan tidak dapat dibatalkan. Pastikan data ini memang benar-benar salah atau tidak berlaku lagi.</p>
+    <div class="modal-actions">
+      <button class="modal-btn-batal" id="modal-btn-batal">Batal</button>
+      <button class="modal-btn-hapus" id="modal-btn-konfirmasi-hapus">Ya, Hapus</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =====================================================================
+   KONFIGURASI SUPABASE
+   ===================================================================== */
+const SUPABASE_URL = 'https://brfdzodjzoeoylbfzkry.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJyZmR6b2Rqem9lb3lsYmZ6a3J5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAyOTQ5OTQsImV4cCI6MjA5NTg3MDk5NH0.jReWj4d_0iD2hUtVBwZLOHfvveRkONtbLQ6qiJDtGB0';
+
+let supabaseClient = null;
+let currentToken = null;
+let currentLingkungan = null; // { id, nama_lingkungan, ketua_koordinator, ... }
+let dataEntri = [];        // entri_wilayah
+let dataAlamat = [];       // detail_alamat_dikenal (jalan/gang/rt)
+let dataAlias = [];        // alias_tambahan
+
+/* Membuat client Supabase dengan header x-token-akses terpasang di setiap request */
+function buatSupabaseClient(token) {
+  return supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+    global: {
+      headers: { 'x-token-akses': token }
+    }
+  });
+}
+
+/* =====================================================================
+   UTIL
+   ===================================================================== */
+function tampilkanLayar(idLayar) {
+  document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
+  document.getElementById(idLayar).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function tampilkanAlert(idAlert, pesan) {
+  const el = document.getElementById(idAlert);
+  el.textContent = pesan;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 5000);
+}
+
+function escapeHtml(str) {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+}
+
+/* =====================================================================
+   LAYAR 1 — DAFTAR LINGKUNGAN & LOGIN
+   ===================================================================== */
+async function muatDaftarLingkungan() {
+  // Query publik ringan hanya untuk mengisi dropdown nama lingkungan.
+  // Tidak menyertakan header token -> RLS akan menolak SELECT tanpa token cocok,
+  // jadi kita pakai daftar statis nama lingkungan (tidak sensitif, sudah umum diketahui umat)
+  // alih-alih query ke Supabase tanpa token.
+  const daftarLingkungan = [
+    'St. Andreas Rasul', 'St. Fransiskus Asisi', 'St. Maria Ratu Rosari', 'St. Albertus',
+    'St. Maria Salve Regina', 'St. Anna', 'St. Clara', 'St. Monica',
+    'St. Theresia dari Lisieux', 'St. Theresia dari Avila', 'St. Gabriel',
+    'St. Maria La Salette', 'St. Maria Immaculata', 'St. Lukas Penginjil',
+    'St. Yosef Pekerja', 'Stasi St. Yosef (Argosari)', 'Stasi Ratu Rosari (Handil)'
+  ];
+  const select = document.getElementById('input-lingkungan');
+  daftarLingkungan.forEach(nama => {
+    const opt = document.createElement('option');
+    opt.value = nama;
+    opt.textContent = nama;
+    select.appendChild(opt);
+  });
+}
+
+async function prosesLogin() {
+  const lingkunganDipilih = document.getElementById('input-lingkungan').value;
+  const token = document.getElementById('input-token').value.trim();
+  const btnMasuk = document.getElementById('btn-masuk');
+
+  if (!lingkunganDipilih) {
+    tampilkanAlert('alert-login', 'Silakan pilih Lingkungan/Stasi terlebih dahulu.');
+    return;
+  }
+  if (!token) {
+    tampilkanAlert('alert-login', 'Silakan masukkan token akses yang dikirimkan melalui WhatsApp.');
+    return;
+  }
+
+  btnMasuk.disabled = true;
+  btnMasuk.textContent = 'Memeriksa...';
+
+    try {
+      const tempClient = buatSupabaseClient(token);
+      const { data, error } = await tempClient
+        .schema('verifikasi')
+        .from('lingkungan')
+        .select('id, nama_lingkungan, ketua_koordinator, kontak_whatsapp, token_akses')
+        .eq('token_akses', token)
+        .maybeSingle();
+
+    if (error) throw error;
+
+    if (!data || data.nama_lingkungan !== lingkunganDipilih) {
+      tampilkanAlert('alert-login', 'Token tidak sesuai dengan Lingkungan/Stasi yang dipilih. Silakan periksa kembali link/token yang dikirimkan, atau hubungi Sekretariat Paroki.');
+      btnMasuk.disabled = false;
+      btnMasuk.textContent = 'Masuk';
+      return;
+    }
+
+    // Login berhasil
+    currentToken = token;
+    currentLingkungan = data;
+    supabaseClient = tempClient;
+
+    document.getElementById('text-nama-ketua').textContent = data.ketua_koordinator || '(Nama belum tercatat)';
+    document.getElementById('text-nama-lingkungan').textContent = data.nama_lingkungan;
+    document.getElementById('text-header-lingkungan').textContent = data.nama_lingkungan;
+    document.getElementById('text-header-ketua').textContent = data.ketua_koordinator || '-';
+
+    tampilkanLayar('screen-welcome');
+  } catch (err) {
+    console.error(err);
+    tampilkanAlert('alert-login', 'Terjadi kendala saat memeriksa token. Silakan coba lagi, atau hubungi Sekretariat Paroki bila masalah berlanjut.');
+  } finally {
+    btnMasuk.disabled = false;
+    btnMasuk.textContent = 'Masuk';
+  }
+}
+
+/* =====================================================================
+   MEMUAT SELURUH DATA VERIFIKASI UNTUK LINGKUNGAN INI
+   ===================================================================== */
+async function muatDataVerifikasi() {
+  tampilkanLayar('screen-loading');
+
+  try {
+    const [entriRes, alamatRes, aliasRes] = await Promise.all([
+      supabaseClient.schema('verifikasi').from('entri_wilayah')
+        .select('*').eq('lingkungan_id', currentLingkungan.id).order('nama'),
+      supabaseClient.schema('verifikasi').from('detail_alamat_dikenal')
+        .select('*').eq('lingkungan_id', currentLingkungan.id).order('nilai'),
+      supabaseClient.schema('verifikasi').from('alias_tambahan')
+        .select('*').eq('lingkungan_id', currentLingkungan.id).order('alias'),
+    ]);
+
+    if (entriRes.error) throw entriRes.error;
+    if (alamatRes.error) throw alamatRes.error;
+    if (aliasRes.error) throw aliasRes.error;
+
+    dataEntri = entriRes.data || [];
+    dataAlamat = alamatRes.data || [];
+    dataAlias = aliasRes.data || [];
+
+    renderSemua();
+    tampilkanLayar('screen-verifikasi');
+  } catch (err) {
+    console.error(err);
+    tampilkanLayar('screen-verifikasi');
+    document.getElementById('list-perumahan').innerHTML =
+      '<div class="alert-box error show">Gagal memuat data. Silakan muat ulang halaman ini, atau hubungi Sekretariat Paroki bila berlanjut.</div>';
+  }
+}
+
+/* =====================================================================
+   RENDER: PROGRESS BAR
+   ===================================================================== */
+function hitungDanRenderProgress() {
+  const totalEntri = dataEntri.length;
+  const totalAlamat = dataAlamat.filter(a => a.jenis !== 'rt').length; // RT tidak dihitung "perlu direview" (selalu editable bebas)
+  const totalAlias = dataAlias.length;
+  const total = totalEntri + totalAlamat + totalAlias;
+
+  const doneEntri = dataEntri.filter(e => e.status_verifikasi !== 'belum_direview').length;
+  const doneAlamat = dataAlamat.filter(a => a.jenis !== 'rt' && a.status_verifikasi !== 'belum_direview').length;
+  const doneAlias = dataAlias.filter(a => a.status_verifikasi !== 'belum_direview').length;
+  const done = doneEntri + doneAlamat + doneAlias;
+
+  document.getElementById('text-progress-count').textContent = done;
+  document.getElementById('text-progress-total').textContent = total;
+  const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+  document.getElementById('progress-fill').style.width = pct + '%';
+}
+
+/* =====================================================================
+   RENDER: PERUMAHAN & LANDMARK (kartu)
+   ===================================================================== */
+function renderPerumahan() {
+  const container = document.getElementById('list-perumahan');
+  container.innerHTML = '';
+
+  // urutkan: ambigu & belum_direview dulu, baru yang sudah selesai di bawah
+  const sorted = [...dataEntri].sort((a, b) => {
+    if (a.is_ambigu !== b.is_ambigu) return a.is_ambigu ? -1 : 1;
+    const aDone = a.status_verifikasi !== 'belum_direview';
+    const bDone = b.status_verifikasi !== 'belum_direview';
+    if (aDone !== bDone) return aDone ? 1 : -1;
+    return 0;
+  });
+
+  if (sorted.length === 0) {
+    container.innerHTML = '<p style="font-size:0.85rem; color:var(--color-stone);">Belum ada data perumahan/landmark tercatat untuk lingkungan ini.</p>';
+    return;
+  }
+
+  sorted.forEach(entri => {
+    const isDone = entri.status_verifikasi !== 'belum_direview';
+    const card = document.createElement('div');
+    card.className = 'entry-card' + (entri.is_ambigu ? ' is-ambigu' : '') + (isDone ? ' is-done' : '');
+    card.dataset.id = entri.id;
+
+    let badgeHtml = '';
+    if (entri.status_verifikasi === 'dikonfirmasi_benar') badgeHtml = '<span class="badge badge-done-benar">✓ Dikonfirmasi Benar</span>';
+    else if (entri.status_verifikasi === 'perlu_koreksi') badgeHtml = '<span class="badge badge-done-koreksi">✎ Ditandai Perlu Koreksi</span>';
+    else if (entri.status_verifikasi === 'bukan_wilayah_saya') badgeHtml = '<span class="badge badge-done-bukan">✗ Bukan Wilayah Ini</span>';
+    else if (entri.is_ambigu) badgeHtml = '<span class="badge badge-ambigu">⚠ Perlu Perhatian Khusus</span>';
+
+    let ambiguNote = '';
+    if (entri.is_ambigu && !isDone) {
+      const lainnya = (entri.lingkungan_kandidat_lain || []).join(', ');
+      ambiguNote = `<div class="ambigu-note">Wilayah ini juga tercatat di lingkungan <b>${escapeHtml(lainnya)}</b>. Mohon koordinasikan dengan Ketua Lingkungan terkait sebelum menandai "Benar", untuk memastikan batas wilayah sudah jelas bagi kedua pihak.</div>`;
+    }
+
+    let metaHtml = '';
+    if (entri.blok_cluster && entri.blok_cluster.length > 0) {
+      metaHtml += `<div><b>Blok/Cluster:</b> ${escapeHtml(entri.blok_cluster.join(', '))}</div>`;
+    }
+    if (entri.alamat_resmi_disperkim) {
+      metaHtml += `<div><b>Alamat resmi tercatat:</b> ${escapeHtml(entri.alamat_resmi_disperkim)}</div>`;
+    }
+    if (entri.jenis === 'landmark') {
+      metaHtml += `<div style="font-style:italic;">Penanda wilayah / bukan perumahan</div>`;
+    }
+
+    card.innerHTML = `
+      ${badgeHtml}
+      <div class="entry-name">${escapeHtml(entri.nama)}</div>
+      <div class="entry-meta">${metaHtml}</div>
+      ${ambiguNote}
+      <div class="entry-actions">
+        <button class="action-btn btn-benar" data-action="benar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Benar
+        </button>
+        <button class="action-btn btn-koreksi" data-action="koreksi">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> Perlu Diperbaiki
+        </button>
+        <button class="action-btn btn-bukan" data-action="bukan">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg> Bukan Wilayah Saya
+        </button>
+      </div>
+      <div class="entry-koreksi-box" data-box="koreksi">
+        <textarea placeholder="Jelaskan koreksi yang perlu dilakukan..."></textarea>
+        <div class="koreksi-buttons">
+          <button class="btn-simpan-koreksi" data-save="koreksi">Simpan</button>
+          <button class="btn-batal-koreksi" data-cancel="koreksi">Batal</button>
+        </div>
+      </div>
+      <div class="entry-koreksi-box" data-box="bukan">
+        <textarea placeholder="Bila Bapak/Ibu tahu, ini sebenarnya wilayah lingkungan mana? (opsional)"></textarea>
+        <div class="koreksi-buttons">
+          <button class="btn-simpan-koreksi" data-save="bukan">Simpan</button>
+          <button class="btn-batal-koreksi" data-cancel="bukan">Batal</button>
+        </div>
+      </div>
+      <div class="tersimpan-indicator">✓ Tersimpan</div>
+    `;
+
+    // Event: tombol Benar -> langsung update
+    card.querySelector('[data-action="benar"]').addEventListener('click', () => {
+      updateStatusEntri(entri.id, 'dikonfirmasi_benar', null, card);
+    });
+    // Event: tombol Perlu Diperbaiki -> buka textarea koreksi
+    card.querySelector('[data-action="koreksi"]').addEventListener('click', () => {
+      card.querySelector('[data-box="koreksi"]').classList.add('show');
+    });
+    // Event: tombol Bukan Wilayah Saya -> buka textarea opsional
+    card.querySelector('[data-action="bukan"]').addEventListener('click', () => {
+      card.querySelector('[data-box="bukan"]').classList.add('show');
+    });
+    // Simpan koreksi
+    card.querySelector('[data-save="koreksi"]').addEventListener('click', () => {
+      const teks = card.querySelector('[data-box="koreksi"] textarea').value.trim();
+      if (!teks) { alert('Mohon jelaskan koreksi yang dimaksud.'); return; }
+      updateStatusEntri(entri.id, 'perlu_koreksi', teks, card);
+    });
+    card.querySelector('[data-cancel="koreksi"]').addEventListener('click', () => {
+      card.querySelector('[data-box="koreksi"]').classList.remove('show');
+    });
+    // Simpan "bukan wilayah saya"
+    card.querySelector('[data-save="bukan"]').addEventListener('click', () => {
+      const teks = card.querySelector('[data-box="bukan"] textarea').value.trim();
+      updateStatusEntri(entri.id, 'bukan_wilayah_saya', teks || null, card);
+    });
+    card.querySelector('[data-cancel="bukan"]').addEventListener('click', () => {
+      card.querySelector('[data-box="bukan"]').classList.remove('show');
+    });
+
+    container.appendChild(card);
+  });
+}
+
+  async function updateStatusEntri(id, status, catatan, cardEl) {
+    try {
+      const { error } = await supabaseClient.schema('verifikasi').from('entri_wilayah')
+        .update({
+          status_verifikasi: status,
+          catatan_ketua: catatan,
+          direview_oleh: currentLingkungan.ketua_koordinator,
+          direview_pada: new Date().toISOString(),
+        })
+        .eq('id', id);
+    if (error) throw error;
+
+    // update state lokal
+    const idx = dataEntri.findIndex(e => e.id === id);
+    if (idx >= 0) {
+      dataEntri[idx].status_verifikasi = status;
+      dataEntri[idx].catatan_ketua = catatan;
+    }
+    cardEl.querySelector('.tersimpan-indicator').classList.add('show');
+    setTimeout(() => { renderPerumahan(); hitungDanRenderProgress(); }, 700);
+  } catch (err) {
+    console.error(err);
+    alert('Gagal menyimpan perubahan. Silakan coba lagi.');
+  }
+}
+
+/* =====================================================================
+   RENDER: CHECKLIST JALAN & GANG
+   ===================================================================== */
+function renderJalanGang() {
+  const container = document.getElementById('list-jalan-gang');
+  container.innerHTML = '';
+  const items = dataAlamat.filter(a => a.jenis === 'jalan' || a.jenis === 'gang');
+
+  if (items.length === 0) {
+    container.innerHTML = '<p style="font-size:0.85rem; color:var(--color-stone);">Belum ada data jalan/gang tercatat untuk lingkungan ini.</p>';
+    return;
+  }
+
+  items.forEach(item => {
+    const isChecked = item.status_verifikasi === 'dikonfirmasi_benar' || item.status_verifikasi === 'belum_direview';
+    const row = document.createElement('div');
+    row.className = 'checklist-item';
+    row.innerHTML = `
+      <input type="checkbox" ${isChecked ? 'checked' : ''} data-id="${item.id}">
+      <div class="checklist-item-body">
+        <div class="checklist-item-text">${escapeHtml(item.nilai)}</div>
+        <div class="checklist-item-tag">${item.jenis}</div>
+        <div class="checklist-koreksi-box" data-box>
+          <textarea placeholder="Apa yang perlu diperbaiki?">${escapeHtml(item.catatan_ketua || '')}</textarea>
+        </div>
+      </div>
+    `;
+    const checkbox = row.querySelector('input');
+    const box = row.querySelector('[data-box]');
+    checkbox.addEventListener('change', async () => {
+      if (checkbox.checked) {
+        box.classList.remove('show');
+        await updateStatusAlamat(item.id, 'dikonfirmasi_benar', null);
+      } else {
+        box.classList.add('show');
+      }
+    });
+    const textarea = row.querySelector('textarea');
+    textarea.addEventListener('blur', async () => {
+      if (!checkbox.checked) {
+        await updateStatusAlamat(item.id, 'perlu_koreksi', textarea.value.trim());
+      }
+    });
+    if (item.status_verifikasi === 'perlu_koreksi') box.classList.add('show');
+    container.appendChild(row);
+  });
+}
+
+  async function updateStatusAlamat(id, status, catatan) {
+    try {
+      const { error } = await supabaseClient.schema('verifikasi').from('detail_alamat_dikenal')
+        .update({
+          status_verifikasi: status,
+          catatan_ketua: catatan,
+          direview_oleh: currentLingkungan.ketua_koordinator,
+          direview_pada: new Date().toISOString(),
+        })
+        .eq('id', id);
+    if (error) throw error;
+    const idx = dataAlamat.findIndex(a => a.id === id);
+    if (idx >= 0) { dataAlamat[idx].status_verifikasi = status; dataAlamat[idx].catatan_ketua = catatan; }
+    hitungDanRenderProgress();
+  } catch (err) {
+    console.error(err);
+    alert('Gagal menyimpan perubahan.');
+  }
+}
+
+/* =====================================================================
+   RENDER: RT (EDITABLE — tambah, edit, hapus)
+   ===================================================================== */
+let rtIdMenungguHapus = null;
+
+function renderRT() {
+  const container = document.getElementById('list-rt');
+  container.innerHTML = '';
+  const items = dataAlamat.filter(a => a.jenis === 'rt');
+
+  if (items.length === 0) {
+    container.innerHTML = '<p style="font-size:0.85rem; color:var(--color-stone); width:100%;">Belum ada data RT tercatat. Silakan tambahkan di bawah.</p>';
+    return;
+  }
+
+  items.forEach(item => {
+    const chip = document.createElement('div');
+    chip.className = 'rt-chip';
+    chip.innerHTML = `
+      <input type="text" value="${escapeHtml(item.nilai)}" data-id="${item.id}">
+      <button class="rt-delete" data-id="${item.id}" data-nilai="${escapeHtml(item.nilai)}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    `;
+    const input = chip.querySelector('input');
+    input.addEventListener('blur', async () => {
+      const nilaiBaru = input.value.trim();
+      if (nilaiBaru && nilaiBaru !== item.nilai) {
+        await updateNilaiRT(item.id, nilaiBaru);
+      }
+    });
+    chip.querySelector('.rt-delete').addEventListener('click', () => {
+      rtIdMenungguHapus = item.id;
+      document.getElementById('modal-rt-nomor').textContent = item.nilai;
+      document.getElementById('modal-hapus-rt').classList.add('show');
+    });
+    container.appendChild(chip);
+  });
+}
+
+async function updateNilaiRT(id, nilaiBaru) {
+  try {
+    const { error } = await supabaseClient.schema('verifikasi').from('detail_alamat_dikenal')
+      .update({ nilai: nilaiBaru, direview_oleh: currentLingkungan.ketua_koordinator, direview_pada: new Date().toISOString() })
+      .eq('id', id);
+    if (error) throw error;
+    const idx = dataAlamat.findIndex(a => a.id === id);
+    if (idx >= 0) dataAlamat[idx].nilai = nilaiBaru;
+  } catch (err) {
+    console.error(err);
+    alert('Gagal menyimpan perubahan nomor RT.');
+    renderRT();
+  }
+}
+
+async function tambahRT() {
+  const input = document.getElementById('input-rt-baru');
+  const nilai = input.value.trim();
+  if (!nilai) return;
+
+  try {
+    const { data, error } = await supabaseClient.schema('verifikasi').from('detail_alamat_dikenal')
+      .insert({
+        lingkungan_id: currentLingkungan.id,
+        jenis: 'rt',
+        nilai: nilai,
+        status_verifikasi: 'dikonfirmasi_benar',
+        direview_oleh: currentLingkungan.ketua_koordinator,
+        direview_pada: new Date().toISOString(),
+      })
+      .select()
+      .single();
+    if (error) throw error;
+    dataAlamat.push(data);
+    input.value = '';
+    renderRT();
+    hitungDanRenderProgress();
+  } catch (err) {
+    console.error(err);
+    alert('Gagal menambahkan RT. Kemungkinan RT ini sudah tercatat sebelumnya.');
+  }
+}
+
+async function konfirmasiHapusRT() {
+  if (!rtIdMenungguHapus) return;
+  try {
+    const { error } = await supabaseClient.schema('verifikasi').from('detail_alamat_dikenal')
+      .delete()
+      .eq('id', rtIdMenungguHapus);
+    if (error) throw error;
+    dataAlamat = dataAlamat.filter(a => a.id !== rtIdMenungguHapus);
+    renderRT();
+    hitungDanRenderProgress();
+  } catch (err) {
+    console.error(err);
+    alert('Gagal menghapus RT. Silakan coba lagi.');
+  } finally {
+    rtIdMenungguHapus = null;
+    document.getElementById('modal-hapus-rt').classList.remove('show');
+  }
+}
+
+/* =====================================================================
+   RENDER: ALIAS TAMBAHAN
+   ===================================================================== */
+function renderAlias() {
+  const container = document.getElementById('list-alias');
+  const section = document.getElementById('section-alias');
+  container.innerHTML = '';
+
+  if (dataAlias.length === 0) {
+    section.style.display = 'none';
+    return;
+  }
+  section.style.display = 'block';
+
+  dataAlias.forEach(item => {
+    const isChecked = item.status_verifikasi === 'dikonfirmasi_benar' || item.status_verifikasi === 'belum_direview';
+    const row = document.createElement('div');
+    row.className = 'checklist-item';
+    row.innerHTML = `
+      <input type="checkbox" ${isChecked ? 'checked' : ''} data-id="${item.id}">
+      <div class="checklist-item-body">
+        <div class="checklist-item-text">${escapeHtml(item.alias)}</div>
+        <div class="checklist-koreksi-box" data-box>
+          <textarea placeholder="Catatan (misal: nama ini sebenarnya tidak relevan)">${escapeHtml(item.catatan_ketua || '')}</textarea>
+        </div>
+      </div>
+    `;
+    const checkbox = row.querySelector('input');
+    const box = row.querySelector('[data-box]');
+    checkbox.addEventListener('change', async () => {
+      if (checkbox.checked) {
+        box.classList.remove('show');
+        await updateStatusAlias(item.id, 'dikonfirmasi_benar', null);
+      } else {
+        box.classList.add('show');
+      }
+    });
+    const textarea = row.querySelector('textarea');
+    textarea.addEventListener('blur', async () => {
+      if (!checkbox.checked) {
+        await updateStatusAlias(item.id, 'perlu_koreksi', textarea.value.trim());
+      }
+    });
+    if (item.status_verifikasi === 'perlu_koreksi') box.classList.add('show');
+    container.appendChild(row);
+  });
+}
+
+async function updateStatusAlias(id, status, catatan) {
+  try {
+    const { error } = await supabaseClient.schema('verifikasi').from('alias_tambahan')
+      .update({
+        status_verifikasi: status,
+        catatan_ketua: catatan,
+        direview_oleh: currentLingkungan.ketua_koordinator,
+        direview_pada: new Date().toISOString(),
+      })
+      .eq('id', id);
+    if (error) throw error;
+    const idx = dataAlias.findIndex(a => a.id === id);
+    if (idx >= 0) { dataAlias[idx].status_verifikasi = status; dataAlias[idx].catatan_ketua = catatan; }
+    hitungDanRenderProgress();
+  } catch (err) {
+    console.error(err);
+    alert('Gagal menyimpan perubahan.');
+  }
+}
+
+/* =====================================================================
+   TAMBAH ENTRI BARU (perumahan/landmark)
+   ===================================================================== */
+async function tambahEntriBaru() {
+  const jenis = document.getElementById('input-tambah-jenis').value;
+  const namaInput = document.getElementById('input-tambah-nama');
+  const nama = namaInput.value.trim();
+  const btn = document.getElementById('btn-tambah-entri');
+
+  if (!nama) {
+    tampilkanAlert('alert-tambah', 'Mohon isi nama perumahan/landmark terlebih dahulu.');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Menyimpan...';
+
+  try {
+    const { data, error } = await supabaseClient.schema('verifikasi').from('entri_wilayah')
+      .insert({
+        lingkungan_id: currentLingkungan.id,
+        jenis: jenis,
+        nama: nama,
+        status_verifikasi: 'usulan_baru',
+        direview_oleh: currentLingkungan.ketua_koordinator,
+        direview_pada: new Date().toISOString(),
+      })
+      .select()
+      .single();
+    if (error) throw error;
+
+    dataEntri.push(data);
+    namaInput.value = '';
+    renderPerumahan();
+    hitungDanRenderProgress();
+    document.getElementById('alert-tambah').className = 'alert-box success show';
+    tampilkanAlert('alert-tambah', `"${nama}" berhasil ditambahkan ke daftar.`);
+  } catch (err) {
+    console.error(err);
+    document.getElementById('alert-tambah').className = 'alert-box error show';
+    tampilkanAlert('alert-tambah', 'Gagal menambahkan data. Silakan coba lagi.');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Tambahkan';
+  }
+}
+
+/* =====================================================================
+   RENDER SEMUA
+   ===================================================================== */
+function renderSemua() {
+  renderPerumahan();
+  renderJalanGang();
+  renderRT();
+  renderAlias();
+  hitungDanRenderProgress();
+}
+
+/* =====================================================================
+   EVENT LISTENERS
+   ===================================================================== */
+document.addEventListener('DOMContentLoaded', () => {
+  muatDaftarLingkungan();
+
+  document.getElementById('btn-masuk').addEventListener('click', prosesLogin);
+  document.getElementById('input-token').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') prosesLogin();
+  });
+
+  document.getElementById('btn-mulai-verifikasi').addEventListener('click', muatDataVerifikasi);
+
+  document.getElementById('btn-tambah-rt').addEventListener('click', tambahRT);
+  document.getElementById('input-rt-baru').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') tambahRT();
+  });
+
+  document.getElementById('btn-tambah-entri').addEventListener('click', tambahEntriBaru);
+
+  document.getElementById('modal-btn-batal').addEventListener('click', () => {
+    rtIdMenungguHapus = null;
+    document.getElementById('modal-hapus-rt').classList.remove('show');
+  });
+  document.getElementById('modal-btn-konfirmasi-hapus').addEventListener('click', konfirmasiHapusRT);
+});
+</script>
+
+</body>
+</html>
