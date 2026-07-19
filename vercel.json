@@ -1,1 +1,0 @@
-﻿{ "version": 2, "builds": [{ "src": "verifikasi_wilayah_lingkungan.html", "use": "@vercel/static" }], "routes": [{ "src": "/(.*)", "dest": "/verifikasi_wilayah_lingkungan.html" }] }
