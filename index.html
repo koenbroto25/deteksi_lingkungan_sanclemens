@@ -802,10 +802,10 @@ a { color: inherit; text-decoration: none; }
       <div id="alert-tambah" class="alert-box success"></div>
     </div>
 
-    <!-- --- Tombol Lanjut / Selesai --- -->
+    <!-- --- Tombol Selesai --- -->
     <div class="card" id="card-lanjut-selesai" style="margin-top:2rem; text-align:center;">
-      <p id="text-status-verifikasi" style="font-size:0.85rem; color:var(--color-stone-dark); margin-bottom:1rem;">—</p>
-      <button id="btn-lanjut-selesai" class="btn-primary">—</button>
+      <p id="text-status-verifikasi" style="font-size:0.85rem; color:var(--color-stone-dark); margin-bottom:1rem;">Setelah memeriksa seluruh data di atas, klik tombol di bawah ini untuk meninjau ringkasan sebelum menyelesaikan.</p>
+      <button id="btn-lanjut-selesai" class="btn-primary">Selesai</button>
       <div id="alert-selesai" class="alert-box success"></div>
     </div>
 
@@ -1014,8 +1014,6 @@ function hitungDanRenderProgress() {
   document.getElementById('text-progress-total').textContent = total;
   const pct = total > 0 ? Math.round((done / total) * 100) : 0;
   document.getElementById('progress-fill').style.width = pct + '%';
-
-  perbaruiTombolLanjutSelesai();
 }
 
 /* =====================================================================
@@ -1452,40 +1450,6 @@ async function tambahEntriBaru() {
   }
 }
 
-/* =====================================================================
-   TOMBOL LANJUT / SELESAI (di bagian bawah halaman)
-   ===================================================================== */
-function cariEntriBelumDireview() {
-  // urutan prioritas: perumahan/landmark dulu, lalu jalan/gang, lalu alias
-  // (RT tidak dihitung, karena RT memang selalu "editable bebas", tidak berstatus wajib direview)
-  const entriBelum = dataEntri.find(e => e.status_verifikasi === 'belum_direview');
-  if (entriBelum) return { tipe: 'entri', id: entriBelum.id };
-
-  const alamatBelum = dataAlamat.find(a => a.jenis !== 'rt' && a.status_verifikasi === 'belum_direview');
-  if (alamatBelum) return { tipe: 'alamat', id: alamatBelum.id };
-
-  const aliasBelum = dataAlias.find(a => a.status_verifikasi === 'belum_direview');
-  if (aliasBelum) return { tipe: 'alias', id: aliasBelum.id };
-
-  return null;
-}
-
-function perbaruiTombolLanjutSelesai() {
-  const belum = cariEntriBelumDireview();
-  const teksStatus = document.getElementById('text-status-verifikasi');
-  const btn = document.getElementById('btn-lanjut-selesai');
-
-  if (belum) {
-    teksStatus.textContent = 'Masih ada data yang perlu Bapak/Ibu periksa. Klik tombol di bawah untuk melompat ke data berikutnya yang belum diverifikasi.';
-    btn.textContent = 'Lanjut ke Data Berikutnya';
-    btn.onclick = () => lompatKeEntriBelumDireview(belum);
-  } else {
-    teksStatus.textContent = 'Semua data sudah Bapak/Ibu periksa. Klik tombol di bawah untuk meninjau ringkasan sebelum menyelesaikan.';
-    btn.innerHTML = 'Tinjau &amp; Tandai Selesai';
-    btn.onclick = bukaModalReviewFinal;
-  }
-}
-
 /* ---------------------------------------------------------------------
    MODAL REVIEW FINAL
    --------------------------------------------------------------------- */
@@ -1579,26 +1543,6 @@ function tutupModalReviewFinal() {
   document.getElementById('modal-review-final').classList.remove('show');
 }
 
-function lompatKeEntriBelumDireview(target) {
-  let selector = null;
-  if (target.tipe === 'entri') {
-    selector = `#list-perumahan .entry-card[data-id="${target.id}"]`;
-  } else if (target.tipe === 'alamat') {
-    selector = `#list-jalan-gang input[data-id="${target.id}"]`;
-  } else if (target.tipe === 'alias') {
-    selector = `#list-alias input[data-id="${target.id}"]`;
-  }
-  if (!selector) return;
-  const el = document.querySelector(selector);
-  if (el) {
-    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    const highlightTarget = el.classList && el.classList.contains('entry-card') ? el : el.closest('.checklist-item') || el;
-    highlightTarget.style.transition = 'box-shadow 0.3s ease';
-    highlightTarget.style.boxShadow = '0 0 0 3px rgba(200,169,110,0.5)';
-    setTimeout(() => { highlightTarget.style.boxShadow = ''; }, 1800);
-  }
-}
-
 async function tandaiVerifikasiSelesai() {
   const btnModal = document.getElementById('btn-review-konfirmasi');
   const btnUtama = document.getElementById('btn-lanjut-selesai');
@@ -1660,6 +1604,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.getElementById('btn-tambah-entri').addEventListener('click', tambahEntriBaru);
+
+  document.getElementById('btn-lanjut-selesai').addEventListener('click', bukaModalReviewFinal);
 
   document.getElementById('modal-btn-batal').addEventListener('click', () => {
     rtIdMenungguHapus = null;
