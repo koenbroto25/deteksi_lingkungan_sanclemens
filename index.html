@@ -123,6 +123,39 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.75;
 }
 
+/* === Q&A pengantar === */
+.qa-card { padding: 0.5rem 1.75rem 1.5rem; }
+.qa-item { padding: 1.35rem 0; border-bottom: 1px solid rgba(139,115,85,0.12); }
+.qa-item:last-child { border-bottom: none; padding-bottom: 0.5rem; }
+.qa-q {
+  font-family: var(--font-heading); font-weight: 600; font-size: 1.1rem;
+  color: var(--color-gold-deep); margin-bottom: 0.5rem; display: flex; gap: 0.5rem;
+}
+.qa-q::before { content: 'Q.'; color: var(--color-gold); flex-shrink: 0; }
+.qa-a { font-size: 0.86rem; color: var(--color-stone-dark); line-height: 1.85; padding-left: 1.6rem; }
+.qa-list { margin: 0.6rem 0 0.6rem 1.2rem; }
+.qa-list li { margin-bottom: 0.5rem; list-style: disc; }
+.qa-item-deadline { background: rgba(200,169,110,0.06); border-radius: var(--radius-card); padding: 1.1rem 1rem; margin-top: 0.5rem; border-bottom: none; }
+.qa-item-deadline .qa-a { padding-left: 1.6rem; }
+
+/* === Kontak WhatsApp === */
+.contact-card { margin-top: 1.25rem; text-align: center; }
+.contact-wa-btn {
+  display: flex; align-items: center; gap: 0.65rem;
+  background: rgba(37,211,102,0.08);
+  border: 1.5px solid rgba(37,211,102,0.3);
+  border-radius: var(--radius-btn);
+  padding: 0.75rem 1.1rem;
+  font-size: 0.85rem; font-weight: 600; color: #1a5c33;
+  margin-bottom: 0.65rem;
+  transition: var(--transition-smooth);
+}
+.contact-wa-btn:last-of-type { margin-bottom: 0; }
+.contact-wa-btn:hover { background: #25d366; color: #fff; border-color: #25d366; transform: translateY(-1px); box-shadow: 0 4px 14px rgba(37,211,102,0.35); }
+.contact-wa-btn svg { width: 22px; height: 22px; flex-shrink: 0; color: #25d366; }
+.contact-wa-btn:hover svg { color: #fff; }
+.contact-note { font-size: 0.72rem; color: var(--color-stone); margin-top: 0.75rem; }
+
 .field-group { margin-bottom: 1.25rem; }
 .field-label {
   display: block;
@@ -393,6 +426,60 @@ a { color: inherit; text-decoration: none; }
 .modal-btn-batal { background: transparent; border: 1.5px solid rgba(139,115,85,0.25); color: var(--color-stone-dark); }
 .modal-btn-hapus { background: var(--color-error); color: #fff; }
 
+/* === Modal Review Final (lebih besar, scrollable) === */
+.modal-box-lebar {
+  background: #fff; border-radius: var(--radius-card-lg);
+  max-width: 560px; width: 100%; max-height: 85vh;
+  display: flex; flex-direction: column;
+  box-shadow: var(--shadow-warm);
+}
+.modal-review-header { padding: 1.5rem 1.75rem 1rem; border-bottom: 1px solid rgba(139,115,85,0.12); flex-shrink: 0; }
+.modal-review-header h3 { font-family: var(--font-heading); font-weight: 600; font-size: 1.35rem; color: var(--color-primary); margin-bottom: 0.3rem; }
+.modal-review-header p { font-size: 0.82rem; color: var(--color-stone-dark); }
+.modal-review-summary {
+  display: flex; gap: 0.6rem; flex-wrap: wrap; padding: 1rem 1.75rem; flex-shrink: 0;
+  border-bottom: 1px solid rgba(139,115,85,0.12);
+}
+.summary-chip {
+  flex: 1; min-width: 100px; text-align: center; padding: 0.6rem 0.5rem;
+  border-radius: var(--radius-card); background: var(--color-parchment);
+}
+.summary-chip .num { font-family: var(--font-heading); font-weight: 700; font-size: 1.4rem; display: block; }
+.summary-chip .lbl { font-size: 0.65rem; color: var(--color-stone); text-transform: uppercase; letter-spacing: 0.04em; }
+.summary-chip.chip-benar .num { color: var(--color-success); }
+.summary-chip.chip-koreksi .num { color: var(--color-stone-dark); }
+.summary-chip.chip-bukan .num { color: var(--color-error); }
+.summary-chip.chip-usulan .num { color: #2d4d73; }
+
+.modal-review-body { padding: 1rem 1.75rem; overflow-y: auto; flex: 1; }
+.modal-review-body h4 {
+  font-family: var(--font-body); font-weight: 700; font-size: 0.72rem;
+  text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-stone);
+  margin: 1.25rem 0 0.6rem;
+}
+.modal-review-body h4:first-child { margin-top: 0; }
+.review-row {
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 0.75rem;
+  padding: 0.55rem 0; border-bottom: 1px solid rgba(139,115,85,0.08); font-size: 0.83rem;
+}
+.review-row:last-child { border-bottom: none; }
+.review-row-name { flex: 1; color: var(--color-text-dark); }
+.review-row-name small { display: block; color: var(--color-stone); font-size: 0.72rem; margin-top: 0.15rem; font-style: italic; }
+.review-row-badge {
+  flex-shrink: 0; font-size: 0.65rem; font-weight: 600; padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-pill); white-space: nowrap;
+}
+.review-row-badge.b-benar { background: rgba(74,140,92,0.12); color: var(--color-success); }
+.review-row-badge.b-koreksi { background: rgba(139,115,85,0.15); color: var(--color-stone-dark); }
+.review-row-badge.b-bukan { background: rgba(139,38,53,0.1); color: var(--color-error); }
+.review-row-badge.b-usulan { background: rgba(45,77,115,0.1); color: #2d4d73; }
+.review-rt-list { font-size: 0.85rem; color: var(--color-text-dark); line-height: 1.9; }
+
+.modal-review-footer { padding: 1.25rem 1.75rem; border-top: 1px solid rgba(139,115,85,0.12); flex-shrink: 0; display: flex; gap: 0.6rem; }
+.modal-review-footer button { flex: 1; min-height: 46px; border-radius: var(--radius-btn); font-size: 0.82rem; font-weight: 600; }
+.btn-review-kembali { background: transparent; border: 1.5px solid rgba(139,115,85,0.25); color: var(--color-stone-dark); }
+.btn-review-konfirmasi { background: linear-gradient(135deg, var(--color-gold-light), var(--color-gold)); color: var(--color-primary); }
+
 /* === Form tambah entri baru === */
 .tambah-entri-card { border: 2px dashed rgba(200,169,110,0.35); background: var(--color-parchment); }
 .tambah-entri-card .field-group:last-child { margin-bottom: 0; }
@@ -429,15 +516,140 @@ a { color: inherit; text-decoration: none; }
 <div class="app-shell">
 
   <!-- ============================================================
-       LAYAR 1 — Pilih Lingkungan & Masukkan Token
+       LAYAR 1a — Pengantar (Q&A) & Kontak
        ============================================================ -->
-  <section id="screen-login" class="screen active">
+  <section id="screen-pengantar" class="screen active">
     <div class="ornament-divider"><span class="line"></span><span class="dot"></span><span class="line"></span></div>
     <h1 class="hero-title">Verifikasi Data Wilayah Lingkungan</h1>
+    <p class="hero-sub">Selamat datang, Bapak/Ibu Ketua Lingkungan yang terkasih.</p>
     <p class="hero-sub">
-      Halaman ini digunakan oleh Ketua Lingkungan/Stasi untuk memeriksa dan
-      memperbaiki data wilayah, sebagai bagian dari persiapan sistem digital
-      Paroki Santo Klemens I, Sepinggan yang sedang dibangun untuk umat.
+      Terima kasih atas kesediaan waktu untuk membaca pengantar singkat ini
+      sebelum memulai proses verifikasi data wilayah lingkungan Bapak/Ibu.
+    </p>
+
+    <div class="card qa-card">
+      <div class="qa-item">
+        <div class="qa-q">Kenapa sih audit alamat ini dilakukan?</div>
+        <div class="qa-a">
+          Paroki saat ini sedang membangun sebuah <b>aplikasi digital untuk umat</b> —
+          yang nantinya akan membantu berbagai keperluan pelayanan umat secara lebih
+          tertata, termasuk pencatatan data keluarga dan keterhubungan setiap umat
+          dengan lingkungannya masing-masing secara otomatis, cukup berdasarkan
+          alamat yang mereka isi saat pendaftaran.
+          <br><br>
+          Supaya sistem itu bisa bekerja dengan benar, syarat paling mendasarnya
+          adalah: <b>data wilayah setiap lingkungan harus akurat, jelas, dan tidak
+          tumpang tindih.</b>
+          <br><br>
+          Bayangkan begini: kalau nanti ada umat baru mendaftar dan mengisi
+          alamatnya di Perumahan tertentu, sistem perlu tahu pasti — perumahan
+          itu masuk lingkungan mana? Kalau data yang jadi acuan sistem masih
+          keliru, ambigu, atau ada yang terlewat, akibatnya umat bisa saja
+          "salah masuk" ke lingkungan yang bukan wilayahnya, atau justru tidak
+          terhubung ke lingkungan mana pun. Ini tentu akan merepotkan Bapak/Ibu
+          sendiri di kemudian hari saat harus meluruskan data satu per satu
+          secara manual.
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q">Kenapa ini mendesak?</div>
+        <div class="qa-a">
+          Data wilayah yang kami miliki saat ini berasal dari pengumpulan dan
+          pencocokan data dari berbagai sumber — termasuk daftar resmi milik
+          Dinas Perumahan Kota Balikpapan, dan hasil telusur kami sendiri.
+          Prosesnya sudah kami lakukan dengan hati-hati dan bertahap, namun
+          <b>hanya Bapak/Ibu selaku Ketua Lingkungan yang benar-benar tahu
+          persis kondisi wilayah sehari-hari</b> — mana yang sudah tepat, mana
+          yang keliru, dan mana yang belum tercatat sama sekali.
+          <br><br>
+          Karena aplikasi umat sedang dalam tahap akhir pembangunan, kami
+          membutuhkan data wilayah yang sudah final sesegera mungkin, agar
+          begitu aplikasi siap digunakan, sistem pendeteksian lingkungan
+          otomatis di dalamnya sudah bisa langsung bekerja dengan akurat sejak
+          hari pertama — tanpa harus umat mengalami kebingungan di awal
+          penggunaan.
+          <br><br>
+          Data ini nantinya juga akan menjadi gambaran nyata jumlah umat
+          Paroki (jenis kelamin, usia, dll) yang berguna terkait urusan
+          pemerintahan. <b>Road to Pesta Perak.</b>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q">Apa yang Bapak/Ibu perlu lakukan?</div>
+        <div class="qa-a">
+          Kami telah menyiapkan sebuah halaman verifikasi sederhana, khusus
+          untuk lingkungan Bapak/Ibu masing-masing (link dikirimkan langsung
+          melalui WhatsApp). Di halaman tersebut, Bapak/Ibu akan diminta untuk:
+          <ul class="qa-list">
+            <li>Mengonfirmasi daftar perumahan, gang, jalan, dan RT yang sudah tercatat — apakah sudah benar, atau perlu diperbaiki.</li>
+            <li>Menambahkan perumahan/wilayah yang mungkin belum tercatat dalam daftar.</li>
+            <li>Untuk beberapa kasus tertentu di mana satu wilayah tercatat tumpang tindih dengan lingkungan tetangga, Bapak/Ibu mungkin akan diminta sedikit berkoordinasi dengan Ketua Lingkungan terkait, agar batas wilayah menjadi jelas bagi kedua belah pihak.</li>
+          </ul>
+          Prosesnya dirancang sesederhana mungkin — tinggal klik "Benar",
+          "Perlu Diperbaiki", atau menandai bila suatu wilayah ternyata bukan
+          bagian dari lingkungan Bapak/Ibu. Semua perubahan tersimpan otomatis,
+          sehingga Bapak/Ibu bisa mengerjakannya bertahap kapan pun ada waktu
+          luang, tidak harus selesai dalam satu waktu duduk.
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q">Data ini untuk siapa?</div>
+        <div class="qa-a">
+          Verifikasi ini murni untuk keperluan penataan data internal wilayah
+          lingkungan, digunakan oleh pengurus paroki untuk memastikan kesiapan
+          sistem sebelum diluncurkan ke umat. Data yang Bapak/Ibu konfirmasi
+          akan menjadi acuan resmi yang digunakan seterusnya, sehingga akurasi
+          dan kesungguhan dalam proses ini akan sangat berarti bagi kelancaran
+          pelayanan umat ke depannya.
+        </div>
+      </div>
+
+      <div class="qa-item qa-item-deadline">
+        <div class="qa-q">Kapan deadline sudah terverifikasi?</div>
+        <div class="qa-a">
+          Sekarang hari <b>Senin, 20 Juli</b>, kami tunggu sampai hari
+          <b>Rabu, 22 Juli 2026</b> data sudah terverifikasi — konfirmasi ini
+          tidak lama kok, hanya perlu <b>5–10 menit saja</b>. Ayo semangat,
+          Bapak/Ibu, untuk data yang lebih baik dan akurat!
+        </div>
+      </div>
+    </div>
+
+    <p class="hero-sub" style="margin-top:1.75rem;">
+      Atas nama Tim Data Paroki, kami mengucapkan terima kasih atas kesediaan
+      dan kerja sama Bapak/Ibu Ketua Lingkungan dalam membantu proses penting
+      ini. Tuhan memberkati pelayanan kita bersama.
+    </p>
+
+    <!-- Kontak Tim Data Paroki -->
+    <div class="card contact-card">
+      <div class="field-label" style="margin-bottom:0.85rem;">Ada pertanyaan seputar proses verifikasi ini?</div>
+      <a class="contact-wa-btn" href="https://wa.me/6282154222442" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2C6.478 2 2 6.477 2 12c0 1.9.53 3.68 1.446 5.19L2 22l4.951-1.418A9.938 9.938 0 0012 22c5.523 0 10-4.477 10-10S17.524 2 12.001 2zm0 18.062a8.02 8.02 0 01-4.09-1.12l-.293-.174-3.041.87.878-2.995-.19-.307A8.001 8.001 0 1120 12a8.009 8.009 0 01-7.999 8.062z"/></svg>
+        <span>Bpk. Koen Broto — +62 821-5422-2442</span>
+      </a>
+      <a class="contact-wa-btn" href="https://wa.me/6285334428164" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2C6.478 2 2 6.477 2 12c0 1.9.53 3.68 1.446 5.19L2 22l4.951-1.418A9.938 9.938 0 0012 22c5.523 0 10-4.477 10-10S17.524 2 12.001 2zm0 18.062a8.02 8.02 0 01-4.09-1.12l-.293-.174-3.041.87.878-2.995-.19-.307A8.001 8.001 0 1120 12a8.009 8.009 0 01-7.999 8.062z"/></svg>
+        <span>Ibu Jovita Maria — +62 853-3442-8164</span>
+      </a>
+      <p class="contact-note">(Tim Data Paroki)</p>
+    </div>
+
+    <button id="btn-mulai-pengantar" class="btn-primary" style="margin-top:1.5rem;">Mulai</button>
+  </section>
+
+  <!-- ============================================================
+       LAYAR 1b — Pilih Lingkungan & Masukkan Token
+       ============================================================ -->
+  <section id="screen-login" class="screen">
+    <div class="ornament-divider"><span class="line"></span><span class="dot"></span><span class="line"></span></div>
+    <h1 class="hero-title">Masuk ke Halaman Verifikasi</h1>
+    <p class="hero-sub">
+      Silakan pilih Lingkungan/Stasi Anda, lalu masukkan token akses yang
+      telah dikirimkan melalui WhatsApp.
     </p>
 
     <div class="card">
@@ -460,8 +672,8 @@ a { color: inherit; text-decoration: none; }
 
     <p class="hero-sub" style="margin-top:1.5rem; font-size:0.76rem;">
       Belum menerima token akses, atau lupa/kehilangan token Anda?
-      Silakan hubungi kembali Sekretariat Paroki melalui nomor WhatsApp
-      yang mengirimkan link verifikasi ini.
+      Silakan hubungi kembali Tim Data Paroki melalui salah satu nomor
+      WhatsApp pada halaman sebelumnya.
     </p>
   </section>
 
@@ -590,6 +802,13 @@ a { color: inherit; text-decoration: none; }
       <div id="alert-tambah" class="alert-box success"></div>
     </div>
 
+    <!-- --- Tombol Lanjut / Selesai --- -->
+    <div class="card" id="card-lanjut-selesai" style="margin-top:2rem; text-align:center;">
+      <p id="text-status-verifikasi" style="font-size:0.85rem; color:var(--color-stone-dark); margin-bottom:1rem;">—</p>
+      <button id="btn-lanjut-selesai" class="btn-primary">—</button>
+      <div id="alert-selesai" class="alert-box success"></div>
+    </div>
+
     <div class="app-footer">
       Data ini digunakan untuk keperluan penataan wilayah internal Paroki Santo Klemens I, Sepinggan.<br>
       Ada pertanyaan? Hubungi kembali nomor WhatsApp yang mengirimkan link ini.
@@ -705,14 +924,14 @@ async function prosesLogin() {
   btnMasuk.disabled = true;
   btnMasuk.textContent = 'Memeriksa...';
 
-    try {
-      const tempClient = buatSupabaseClient(token);
-      const { data, error } = await tempClient
-        .schema('verifikasi')
-        .from('lingkungan')
-        .select('id, nama_lingkungan, ketua_koordinator, kontak_whatsapp, token_akses')
-        .eq('token_akses', token)
-        .maybeSingle();
+  try {
+    const tempClient = buatSupabaseClient(token);
+    const { data, error } = await tempClient
+      .schema('verifikasi')
+      .from('lingkungan')
+      .select('id, nama_lingkungan, ketua_koordinator, kontak_whatsapp, token_akses')
+      .eq('token_akses', token)
+      .maybeSingle();
 
     if (error) throw error;
 
@@ -795,6 +1014,8 @@ function hitungDanRenderProgress() {
   document.getElementById('text-progress-total').textContent = total;
   const pct = total > 0 ? Math.round((done / total) * 100) : 0;
   document.getElementById('progress-fill').style.width = pct + '%';
+
+  perbaruiTombolLanjutSelesai();
 }
 
 /* =====================================================================
@@ -837,6 +1058,9 @@ function renderPerumahan() {
     }
 
     let metaHtml = '';
+    if (entri.nama_resmi_disperkim && entri.nama_resmi_disperkim.trim().toLowerCase() !== entri.nama.trim().toLowerCase()) {
+      metaHtml += `<div><b>Nama resmi Disperkim:</b> ${escapeHtml(entri.nama_resmi_disperkim)}</div>`;
+    }
     if (entri.blok_cluster && entri.blok_cluster.length > 0) {
       metaHtml += `<div><b>Blok/Cluster:</b> ${escapeHtml(entri.blok_cluster.join(', '))}</div>`;
     }
@@ -845,6 +1069,9 @@ function renderPerumahan() {
     }
     if (entri.jenis === 'landmark') {
       metaHtml += `<div style="font-style:italic;">Penanda wilayah / bukan perumahan</div>`;
+    }
+    if (entri.catatan_awal && entri.catatan_awal.trim()) {
+      metaHtml += `<div style="margin-top:0.35rem; color:var(--color-stone); font-style:italic;">Catatan verifikasi sebelumnya: ${escapeHtml(entri.catatan_awal)}</div>`;
     }
 
     card.innerHTML = `
@@ -914,16 +1141,16 @@ function renderPerumahan() {
   });
 }
 
-  async function updateStatusEntri(id, status, catatan, cardEl) {
-    try {
-      const { error } = await supabaseClient.schema('verifikasi').from('entri_wilayah')
-        .update({
-          status_verifikasi: status,
-          catatan_ketua: catatan,
-          direview_oleh: currentLingkungan.ketua_koordinator,
-          direview_pada: new Date().toISOString(),
-        })
-        .eq('id', id);
+async function updateStatusEntri(id, status, catatan, cardEl) {
+  try {
+    const { error } = await supabaseClient.schema('verifikasi').from('entri_wilayah')
+      .update({
+        status_verifikasi: status,
+        catatan_ketua: catatan,
+        direview_oleh: currentLingkungan.ketua_koordinator,
+        direview_pada: new Date().toISOString(),
+      })
+      .eq('id', id);
     if (error) throw error;
 
     // update state lokal
@@ -988,16 +1215,16 @@ function renderJalanGang() {
   });
 }
 
-  async function updateStatusAlamat(id, status, catatan) {
-    try {
-      const { error } = await supabaseClient.schema('verifikasi').from('detail_alamat_dikenal')
-        .update({
-          status_verifikasi: status,
-          catatan_ketua: catatan,
-          direview_oleh: currentLingkungan.ketua_koordinator,
-          direview_pada: new Date().toISOString(),
-        })
-        .eq('id', id);
+async function updateStatusAlamat(id, status, catatan) {
+  try {
+    const { error } = await supabaseClient.schema('verifikasi').from('detail_alamat_dikenal')
+      .update({
+        status_verifikasi: status,
+        catatan_ketua: catatan,
+        direview_oleh: currentLingkungan.ketua_koordinator,
+        direview_pada: new Date().toISOString(),
+      })
+      .eq('id', id);
     if (error) throw error;
     const idx = dataAlamat.findIndex(a => a.id === id);
     if (idx >= 0) { dataAlamat[idx].status_verifikasi = status; dataAlamat[idx].catatan_ketua = catatan; }
@@ -1226,6 +1453,180 @@ async function tambahEntriBaru() {
 }
 
 /* =====================================================================
+   TOMBOL LANJUT / SELESAI (di bagian bawah halaman)
+   ===================================================================== */
+function cariEntriBelumDireview() {
+  // urutan prioritas: perumahan/landmark dulu, lalu jalan/gang, lalu alias
+  // (RT tidak dihitung, karena RT memang selalu "editable bebas", tidak berstatus wajib direview)
+  const entriBelum = dataEntri.find(e => e.status_verifikasi === 'belum_direview');
+  if (entriBelum) return { tipe: 'entri', id: entriBelum.id };
+
+  const alamatBelum = dataAlamat.find(a => a.jenis !== 'rt' && a.status_verifikasi === 'belum_direview');
+  if (alamatBelum) return { tipe: 'alamat', id: alamatBelum.id };
+
+  const aliasBelum = dataAlias.find(a => a.status_verifikasi === 'belum_direview');
+  if (aliasBelum) return { tipe: 'alias', id: aliasBelum.id };
+
+  return null;
+}
+
+function perbaruiTombolLanjutSelesai() {
+  const belum = cariEntriBelumDireview();
+  const teksStatus = document.getElementById('text-status-verifikasi');
+  const btn = document.getElementById('btn-lanjut-selesai');
+
+  if (belum) {
+    teksStatus.textContent = 'Masih ada data yang perlu Bapak/Ibu periksa. Klik tombol di bawah untuk melompat ke data berikutnya yang belum diverifikasi.';
+    btn.textContent = 'Lanjut ke Data Berikutnya';
+    btn.onclick = () => lompatKeEntriBelumDireview(belum);
+  } else {
+    teksStatus.textContent = 'Semua data sudah Bapak/Ibu periksa. Klik tombol di bawah untuk meninjau ringkasan sebelum menyelesaikan.';
+    btn.innerHTML = 'Tinjau &amp; Tandai Selesai';
+    btn.onclick = bukaModalReviewFinal;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   MODAL REVIEW FINAL
+   --------------------------------------------------------------------- */
+const LABEL_STATUS = {
+  dikonfirmasi_benar: { teks: 'Benar', kelas: 'b-benar' },
+  perlu_koreksi: { teks: 'Perlu Koreksi', kelas: 'b-koreksi' },
+  bukan_wilayah_saya: { teks: 'Bukan Wilayah Ini', kelas: 'b-bukan' },
+  usulan_baru: { teks: 'Usulan Baru', kelas: 'b-usulan' },
+  belum_direview: { teks: 'Belum Direview', kelas: 'b-koreksi' },
+};
+
+function buatBarisReview(nama, status, catatan) {
+  const label = LABEL_STATUS[status] || { teks: status, kelas: 'b-koreksi' };
+  const catatanHtml = catatan ? `<small>${escapeHtml(catatan)}</small>` : '';
+  return `
+    <div class="review-row">
+      <div class="review-row-name">${escapeHtml(nama)}${catatanHtml}</div>
+      <span class="review-row-badge ${label.kelas}">${label.teks}</span>
+    </div>
+  `;
+}
+
+function renderModalReviewFinal() {
+  // --- Ringkasan angka ---
+  const semuaStatus = [
+    ...dataEntri.map(e => e.status_verifikasi),
+    ...dataAlamat.filter(a => a.jenis !== 'rt').map(a => a.status_verifikasi),
+    ...dataAlias.map(a => a.status_verifikasi),
+  ];
+  const jumlah = {
+    dikonfirmasi_benar: semuaStatus.filter(s => s === 'dikonfirmasi_benar').length,
+    perlu_koreksi: semuaStatus.filter(s => s === 'perlu_koreksi').length,
+    bukan_wilayah_saya: semuaStatus.filter(s => s === 'bukan_wilayah_saya').length,
+    usulan_baru: [...dataEntri].filter(e => e.status_verifikasi === 'usulan_baru').length,
+  };
+
+  document.getElementById('modal-review-summary').innerHTML = `
+    <div class="summary-chip chip-benar"><span class="num">${jumlah.dikonfirmasi_benar}</span><span class="lbl">Benar</span></div>
+    <div class="summary-chip chip-koreksi"><span class="num">${jumlah.perlu_koreksi}</span><span class="lbl">Koreksi</span></div>
+    <div class="summary-chip chip-bukan"><span class="num">${jumlah.bukan_wilayah_saya}</span><span class="lbl">Bukan Wilayah</span></div>
+    <div class="summary-chip chip-usulan"><span class="num">${jumlah.usulan_baru}</span><span class="lbl">Usulan Baru</span></div>
+  `;
+
+  // --- Rincian per kategori ---
+  let bodyHtml = '';
+
+  bodyHtml += '<h4>Perumahan &amp; Landmark</h4>';
+  if (dataEntri.length === 0) {
+    bodyHtml += '<p style="font-size:0.82rem; color:var(--color-stone);">Tidak ada data.</p>';
+  } else {
+    [...dataEntri].sort((a,b) => a.nama.localeCompare(b.nama)).forEach(e => {
+      bodyHtml += buatBarisReview(e.nama, e.status_verifikasi, e.catatan_ketua);
+    });
+  }
+
+  const jalanGang = dataAlamat.filter(a => a.jenis === 'jalan' || a.jenis === 'gang');
+  bodyHtml += '<h4>Jalan &amp; Gang</h4>';
+  if (jalanGang.length === 0) {
+    bodyHtml += '<p style="font-size:0.82rem; color:var(--color-stone);">Tidak ada data.</p>';
+  } else {
+    [...jalanGang].sort((a,b) => a.nilai.localeCompare(b.nilai)).forEach(a => {
+      bodyHtml += buatBarisReview(a.nilai, a.status_verifikasi, a.catatan_ketua);
+    });
+  }
+
+  if (dataAlias.length > 0) {
+    bodyHtml += '<h4>Nama Lain / Sebutan Sehari-hari</h4>';
+    [...dataAlias].sort((a,b) => a.alias.localeCompare(b.alias)).forEach(a => {
+      bodyHtml += buatBarisReview(a.alias, a.status_verifikasi, a.catatan_ketua);
+    });
+  }
+
+  const rt = dataAlamat.filter(a => a.jenis === 'rt');
+  bodyHtml += '<h4>RT Saat Ini</h4>';
+  if (rt.length === 0) {
+    bodyHtml += '<p style="font-size:0.82rem; color:var(--color-stone);">Belum ada data RT tercatat.</p>';
+  } else {
+    const daftarRt = [...rt].map(a => escapeHtml(a.nilai)).join(', ');
+    bodyHtml += `<p class="review-rt-list">${daftarRt}</p>`;
+  }
+
+  document.getElementById('modal-review-body').innerHTML = bodyHtml;
+}
+
+function bukaModalReviewFinal() {
+  renderModalReviewFinal();
+  document.getElementById('modal-review-final').classList.add('show');
+}
+
+function tutupModalReviewFinal() {
+  document.getElementById('modal-review-final').classList.remove('show');
+}
+
+function lompatKeEntriBelumDireview(target) {
+  let selector = null;
+  if (target.tipe === 'entri') {
+    selector = `#list-perumahan .entry-card[data-id="${target.id}"]`;
+  } else if (target.tipe === 'alamat') {
+    selector = `#list-jalan-gang input[data-id="${target.id}"]`;
+  } else if (target.tipe === 'alias') {
+    selector = `#list-alias input[data-id="${target.id}"]`;
+  }
+  if (!selector) return;
+  const el = document.querySelector(selector);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const highlightTarget = el.classList && el.classList.contains('entry-card') ? el : el.closest('.checklist-item') || el;
+    highlightTarget.style.transition = 'box-shadow 0.3s ease';
+    highlightTarget.style.boxShadow = '0 0 0 3px rgba(200,169,110,0.5)';
+    setTimeout(() => { highlightTarget.style.boxShadow = ''; }, 1800);
+  }
+}
+
+async function tandaiVerifikasiSelesai() {
+  const btnModal = document.getElementById('btn-review-konfirmasi');
+  const btnUtama = document.getElementById('btn-lanjut-selesai');
+  btnModal.disabled = true;
+  btnModal.textContent = 'Menyimpan...';
+  try {
+    const { error } = await supabaseClient.schema('verifikasi').from('lingkungan')
+      .update({ verifikasi_selesai_pada: new Date().toISOString() })
+      .eq('id', currentLingkungan.id);
+    if (error) throw error;
+
+    tutupModalReviewFinal();
+    document.getElementById('alert-selesai').className = 'alert-box success show';
+    tampilkanAlert('alert-selesai', 'Terima kasih, Bapak/Ibu. Verifikasi wilayah lingkungan ini telah tercatat selesai. Bapak/Ibu tetap dapat membuka kembali halaman ini kapan saja bila ada data yang perlu diperbarui.');
+    btnUtama.innerHTML = 'Sudah Ditandai Selesai ✓';
+    btnUtama.disabled = true;
+  } catch (err) {
+    console.error(err);
+    tutupModalReviewFinal();
+    document.getElementById('alert-selesai').className = 'alert-box error show';
+    tampilkanAlert('alert-selesai', 'Gagal menyimpan status selesai. Silakan coba lagi.');
+  } finally {
+    btnModal.disabled = false;
+    btnModal.textContent = 'Ya, Konfirmasi & Selesai';
+  }
+}
+
+/* =====================================================================
    RENDER SEMUA
    ===================================================================== */
 function renderSemua() {
@@ -1241,6 +1642,10 @@ function renderSemua() {
    ===================================================================== */
 document.addEventListener('DOMContentLoaded', () => {
   muatDaftarLingkungan();
+
+  document.getElementById('btn-mulai-pengantar').addEventListener('click', () => {
+    tampilkanLayar('screen-login');
+  });
 
   document.getElementById('btn-masuk').addEventListener('click', prosesLogin);
   document.getElementById('input-token').addEventListener('keydown', (e) => {
@@ -1261,8 +1666,27 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('modal-hapus-rt').classList.remove('show');
   });
   document.getElementById('modal-btn-konfirmasi-hapus').addEventListener('click', konfirmasiHapusRT);
+
+  document.getElementById('btn-review-kembali').addEventListener('click', tutupModalReviewFinal);
+  document.getElementById('btn-review-konfirmasi').addEventListener('click', tandaiVerifikasiSelesai);
 });
 </script>
+
+<!-- Modal Review Final sebelum menandai verifikasi selesai -->
+<div class="modal-overlay" id="modal-review-final">
+  <div class="modal-box-lebar">
+    <div class="modal-review-header">
+      <h3>Tinjau Sebelum Menyelesaikan</h3>
+      <p>Mohon periksa kembali seluruh ringkasan berikut sebelum mengonfirmasi bahwa verifikasi wilayah lingkungan ini selesai.</p>
+    </div>
+    <div class="modal-review-summary" id="modal-review-summary"></div>
+    <div class="modal-review-body" id="modal-review-body"></div>
+    <div class="modal-review-footer">
+      <button class="btn-review-kembali" id="btn-review-kembali">Kembali &amp; Periksa Lagi</button>
+      <button class="btn-review-konfirmasi" id="btn-review-konfirmasi">Ya, Konfirmasi &amp; Selesai</button>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
